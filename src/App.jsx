@@ -5,6 +5,7 @@ import MainLayout from "./layouts/MainLayout";
 import ProtectedLayout from "./layouts/ProtectedLayout";
 import Home from "./pages/Home";
 import SearchBands from "./pages/SearchBands";
+import ShotInTheDark from "./pages/ShotInTheDark";
 
 import Login from "./pages/Login";
 import Register from "./pages/Register";
@@ -19,9 +20,9 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
+           <Route path="/searchBand" element={<SearchBands />} />
         </Route>
         <Route element={<ProtectedLayout />}>
-            <Route path="/searchBand" element={<SearchBands />} />
             <Route path="/logout" element={<Logout />} />
         </Route>
       </Routes>
@@ -30,4 +31,6 @@ function App() {
 }
 
 export default App;
+
+//make a drop box for which path to take 
 

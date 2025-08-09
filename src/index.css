@@ -1,11 +1,11 @@
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'Roboto', sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  color: rgba(158, 126, 126, 0.87);
+  background-color: #2d2a32;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -13,11 +13,54 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.img {
-    align-items: center;
-    display: flex;
-    padding: 16px;
-    width: 75%;
+.Ozzy {
+  width: 800%;        
+  max-width: 800px;    
+  height: 600px;        
+  display: block;
+  margin: 0 auto;      
+  border-radius: 20px; 
+  object-fit: cover;
+  opacity: 0.8; 
+  border-radius: 10px; 
+  filter: grayscale(70%) brightness(90%);
+}
+
+h1 {
+  font-family: 'Metal Mania', cursive;
+  font-size: 75px;
+  display: center;
+  height: auto;
+}
+
+p{
+  font-family: 'Metal Mania', cursive;
+  text-align: center;      
+  margin: 20px auto;       
+  font-size: 2rem;          
+  max-width: 800px;
+}
+
+button {
+  display: block;
+}
+
+h2 {
+  font-family: 'Fantasty', papyrus, sans-serif;
+  text-align: center;      
+  margin: 20px auto;       
+  font-size: 2rem;          
+  max-width: 800px;
+}
+
+.question {
+  font-family: 'Fantasty', papyrus, sans-serif;
+  font-size: 20px;
+  width: 25%; 
+  height: 30px;
+  display: flex;
+  margin: 0 auto;
+  object-fit: cover;
 }
 
 @media (prefers-color-scheme: light) {
@@ -26,7 +69,7 @@
     background-color: #ffffff;
   }
   a:hover {
-    color: #747bff;
+    color: #070708;
   }
   button {
     background-color: #f9f9f9;

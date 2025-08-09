@@ -13,8 +13,18 @@ const Header = () => {
                 <ul>
                     {isAuth ? (
                     <>
-                    <li><Link to="/home">Home</Link></li>
-                    <li><Link to="/save">Saved</Link></li>
+                    <li>
+                        <Link to="/home">Home</Link>
+                    </li>
+                    <li>
+                        <Link to='/login'>Login</Link>
+                    </li>
+                    <li>
+                        <Link to='/shotinthedark'>Shot In The Dark</Link>
+                    </li>
+                    <li>
+                        <Link to="/save">Saved</Link>
+                    </li>
                     <li>
                         <Link to='/logout'>Logout</Link>
                     </li>
