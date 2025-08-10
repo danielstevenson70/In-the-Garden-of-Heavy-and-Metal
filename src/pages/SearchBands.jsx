@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { generatePath, useNavigate } from "react-router";
+import bandLinkList from "../components/BandLink";
 
 const SearchBands = () => {
     const [bandItems, setBandItems] = useState([]);
@@ -44,6 +45,7 @@ const SearchBands = () => {
                 </label>
                 <button type="submit">Submit</button>
             </form>
+            <img src="https://lh3.googleusercontent.com/KLV584-o8VQTJBfFs8tOzzL3fK691B7BYaykD8_7poaC_kfvuXQQsGiuey_Iel0T60PEh09axdMPtByr=w120-h120-l90-rj" alt="thousand below" />
             {bandItems && bandItems.length > 0 ? (
                 <ul className={styles?.bandList}>
                     {bandItems.map(band => (

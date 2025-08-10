@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import styles from "./Link.module.css"
 
 
 const bandLinkList = () => {
@@ -15,18 +14,22 @@ const bandLinkList = () => {
         getBandLinks();
     }, [setBandLinkItems]); 
 
+
     return (
         <>
         {linkItems && linkItems.length > 0 ? (
             <ul className={styles.linkList}>
-                {linkItems.map(link => {
-                    // return (<li key={link.id}>
-                    //     <a href={`https://bzzt.fun/${link.short_url}`} 
-                    //     title={`Short URL for ${link.title}`}
-                    //     className={styles.linkLink}
-                    //     >{link.title}</a>
-                    </li>)
-                })}
+                {linkItems.map(link => (
+                    <li key={link.id}>
+                        <a
+                            href={`https://bzzt.fun/${link.short_url}`}
+                            title={`Short URL for ${link.title}`}
+                            className={styles.linkLink}
+                        >
+                            {link.title}
+                        </a>
+                    </li>
+                ))}
             </ul>
         ) : (
             <p>links did not load</p>

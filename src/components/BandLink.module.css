@@ -1,0 +1,30 @@
+.band-section {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1rem;
+  padding: 20px;
+  background-color: #111; /* dark metal vibe */
+}
+
+.band-card {
+  background: #1c1c1c;
+  color: white;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+}
+
+.band-card h2 {
+  border-bottom: 2px solid crimson;
+  padding-bottom: 5px;
+  margin-bottom: 10px;
+}
+
+.band-card a {
+  color: crimson;
+  text-decoration: none;
+}
+
+.band-card a:hover {
+  text-decoration: underline;
+}

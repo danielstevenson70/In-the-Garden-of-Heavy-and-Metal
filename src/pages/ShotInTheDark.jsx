@@ -5,7 +5,7 @@ const SearchRandomBand = () => {
     const [bandItems, setBandItems] = useState([]);
 
     useEffect (() => {
-        const getBands = async () => {
+        const getRandomBands = async () => {
             const url = `${import.meta.env.VITE_API_URL}/urls`;
             const data = await fetch(url).then(response => response.json());
 
