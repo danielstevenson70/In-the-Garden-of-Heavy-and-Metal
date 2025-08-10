@@ -41,12 +41,6 @@ const bandLinkList = () => {
     };
     }
 
-    return (
-        <>
-        <SearchBand />
-        </>
-    );
-
 const searchBandCards = () => {
   return (
       <>
@@ -75,14 +69,17 @@ const searchBandCards = () => {
           <div class="band-card">
               <h2>About the Band</h2>
               <p>
-                  Formed in 2005, this band blends heavy riffs with melodic vocals,
-                  delivering an electrifying live performance. Known for their 
-                  hit single “Metal Dreams,” they’ve toured worldwide.
+                  
               </p>
           </div>
       </>
   )
 };
+  return (
+        <>
+        <SearchBand />
+        </>
+    );
 };
 
 export default bandLinkList;
