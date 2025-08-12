@@ -1,9 +1,8 @@
-import { use, useState } from "react";
-import bandLinkList from "../components/BandLink";
-import styles from "../components/BandLink.module.css";
+import { useState } from "react";
+import { nanoid } from "nanoid";
 import { useNavigate } from "react-router";
 
-const bandLinkList = () => {
+const BandLinkList = () => {
     const [bandSong, setBandSong] = useState("");
     const [bandLinks, setBandLinks] = useState("");
     const [bandInfo, setBandInfo] = useState("");
@@ -17,10 +16,10 @@ const bandLinkList = () => {
         const access_token = localStorage.getItem("access_token");
 
         const body = {
-           "long_url": linkUrl,
+            "long_url": bandLinks,
             "short_url": shortUrl,
-            "title": linkName,
-            "user_id" : 1
+            "title": bandSong,
+            "user_id": 1
         };
 
         try {
@@ -34,52 +33,51 @@ const bandLinkList = () => {
             });
             const data = await response.json();
             console.log("DATA:", data);
-            navigate("/searchband")
+            navigate("/searchband");
         } catch (error) {
             console.error(error);
         }
     };
-    }
 
-const searchBandCards = () => {
-  return (
-      <>
-          <div class="band-section">
-              <div class="band-card">
-                  <h2>Band Links and Merch</h2>
-                  <ul>
-                      <li><a href="https://.com" target="_blank">Official Website</a></li>
-                      <li><a href="https://instagram.com/" target="_blank">Instagram</a></li>
-                      <li><a href="https://facebook.com/" target="_blank">Facebook</a></li>
-                      <li><a href="" target="">Merchlink</a></li>
-                  </ul>
-              </div>
-          </div>
-
-          <div class="band-card">
-              <h2>Song Preview</h2>
-              <iframe width="100%" height="200" 
-                  src="https://www.youtube.com/embed/YOUR_VIDEO_ID?start=30&end=60"
-                  title="Band Song Snippet" frameborder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowfullscreen>
-              </iframe>
-          </div>
-
-          <div class="band-card">
-              <h2>About the Band</h2>
-              <p>
-                  
-              </p>
-          </div>
-      </>
-  )
-};
-  return (
+    const searchBandCards = () => (
         <>
-        <SearchBand />
+            <div className="band-section">
+                <div className="band-card">
+                    <h2>Band Links and Merch</h2>
+                    <ul>
+                        <li><a href="https://.com" target="_blank" rel="noopener noreferrer">Official Website</a></li>
+                        <li><a href="https://instagram.com/" target="_blank" rel="noopener noreferrer">Instagram</a></li>
+                        <li><a href="https://facebook.com/" target="_blank" rel="noopener noreferrer">Facebook</a></li>
+                        <li><a href="" target="_blank" rel="noopener noreferrer">Merchlink</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div className="band-card">
+                <h2>Song Preview</h2>
+                <iframe width="100%" height="200"
+                    src="https://www.youtube.com/embed/YOUR_VIDEO_ID?start=30&end=60"
+                    title="Band Song Snippet" frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen>
+                </iframe>
+            </div>
+
+            <div className="band-card">
+                <h2>About the Band</h2>
+                <p>
+                    
+                </p>
+            </div>
+        </>
+    );
+
+    return (
+        <>
+            {/* <SearchBand /> Uncomment if SearchBand is defined/imported */}
+            {searchBandCards()}
         </>
     );
 };
 
-export default bandLinkList;
+export default BandLinkList;
