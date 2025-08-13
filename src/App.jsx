@@ -12,25 +12,49 @@ import Register from "./pages/Register";
 import Logout from "./pages/Logout";
 
 
-function App() {
+export default function App() {
+    const [prompt, setPrompt] = useState("");
+    const [response, setResponse] = useState("");
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        const res = await fetch("/generate", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ prompt })
+        });
+        const data = await res.json();
+        setResponse(data.output);
+    };
+
   return (
-    <AuthProvider>
-      <Routes>
-        <Route element={<MainLayout />}>
+    <>
+      <form onSubmit={handleSubmit}>
+        <textarea
+          value={prompt}
+          onChange={(e) => setPrompt(e.target.value)}
+          placeholder="Ask the AI something..."
+        />
+        <button type="submit">Send</button>
+      </form>
+      {response && <p>AI says: {response}</p>}
+
+      <AuthProvider>
+        <Routes>
+          <Route element={<MainLayout />}>
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
-           <Route path="/searchBand" element={<SearchBands />} />
-        </Route>
-        <Route element={<ProtectedLayout />}>
+            <Route path="/searchBand" element={<SearchBands />} />
+          </Route>
+          <Route element={<ProtectedLayout />}>
             <Route path="/logout" element={<Logout />} />
-        </Route>
-      </Routes>
-    </AuthProvider>
+          </Route>
+        </Routes>
+      </AuthProvider>
+    </>
   );
 }
-
-export default App;
 
 //make a drop box for which path to take 
 
