@@ -28,10 +28,17 @@ const LoginForm = () => {
           'Content-Type': 'application/json',
         },
       });
+      console.log('response2', response)
+      if (!response.ok) {
+        // Handle non-successful responses (e.g., 401, 404, 500)
+        const errorData = await response.json().catch(() => ({})); // Try to parse JSON error body, but handle failure
+        console.error('Login failed:', response.status, errorData);
+        // You might want to display an error message to the user here
+        return; // Stop execution if the response is not OK
+      }
       const statusCode = response.status;
-      const data = await response.json();
-
       console.log('RESPONSE:', response, response.status);
+      const data = await response.json();
 
       const { access_token } = data;
       localStorage.clear();

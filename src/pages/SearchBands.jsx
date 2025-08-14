@@ -1,12 +1,17 @@
 import { useState, useEffect } from "react";
 import { generatePath, useNavigate } from "react-router";
-import bandLinkList from "../components/BandLink";
+
 
 const SearchBands = () => {
     const [bandItems, setBandItems] = useState([]);
     const [linkName, setLinkName] = useState("");
     const [linkUrl, setLinkUrl] = useState("");
+
     const navigate = useNavigate();
+    
+    const goToBand = (bandId) => {
+        navigate(`/band${bandId}`);
+    };
 
     useEffect(() => {
         const getBands = async () => {
@@ -25,7 +30,17 @@ const SearchBands = () => {
 
     return (
         <>
-            <form method="POST" onSubmit={handleSubmit} onClick={generatePath}>
+            <div>
+                <h1>Search Bands</h1>
+                    {bandItems.map((band) => (
+                <div key={band.id}>
+                <span>{band.name}</span>
+                <button onClick={() => goToBand(band.id)}>View Band</button>
+            </div>
+                ))}
+            </div>
+
+            <form method="POST" onSubmit={handleSubmit}>
                 <label>
                     <input 
                         type="text" 

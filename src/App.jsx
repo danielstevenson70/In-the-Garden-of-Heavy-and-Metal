@@ -1,5 +1,6 @@
 import { Routes, Route } from "react-router";
 import { AuthProvider } from "./AuthContext";
+import React, { useState } from 'react';
 
 import MainLayout from "./layouts/MainLayout";
 import ProtectedLayout from "./layouts/ProtectedLayout";
@@ -18,7 +19,8 @@ export default function App() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const res = await fetch("/generate", {
+        const res = await fetch(`${import.meta.env.VITE_API_URL}/generate`, {
+           //the import meta needs to be generated and not have it just /generate 
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ prompt })
@@ -29,16 +31,6 @@ export default function App() {
 
   return (
     <>
-      <form onSubmit={handleSubmit}>
-        <textarea
-          value={prompt}
-          onChange={(e) => setPrompt(e.target.value)}
-          placeholder="Ask the AI something..."
-        />
-        <button type="submit">Send</button>
-      </form>
-      {response && <p>AI says: {response}</p>}
-
       <AuthProvider>
         <Routes>
           <Route element={<MainLayout />}>

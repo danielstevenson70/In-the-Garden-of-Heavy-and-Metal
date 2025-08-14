@@ -16,6 +16,16 @@ const SearchRandomBand = () => {
 
     return (
         <>
+        <form onSubmit={handleSubmit}>
+        <textarea
+          value={prompt}
+          onChange={(e) => setPrompt(e.target.value)}
+          placeholder="Ask the AI something..."
+        />
+        <button type="submit">Send</button>
+      </form>
+      {response && <p>AI says: {response}</p>}
+      
         {bandItems && bandItems.length > 0 ? (
             <ul classname={styles.bandList}>
                 {bandItems.map(Randomband => {
