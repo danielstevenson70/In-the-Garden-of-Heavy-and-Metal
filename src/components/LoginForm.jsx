@@ -52,32 +52,77 @@ const LoginForm = () => {
 
   return (
     <>
-      <Link to='/register'>Click here if you need register for an account</Link>
       <form
         method='POST'
         onSubmit={(e) => handleSubmit(e)}
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          height: '50vh',
+          fontFamily: 'Arial, sans-serif'
+        }}
       >
         <label>
-          Username
+          Username :
           <input
             type='text'
             name='emailAddress'
             value={emailAddress}
             placeholder='user@email.com'
             onChange={(e) => setEmailAddress(e.target.value)}
+            style={{
+              width: '80%',
+              padding: '12px 15px',
+              margin: '10px 20px 0',
+              border: '1px solid #ccc',
+              borderRadius: '8px',
+              boxSizing: 'border-box',
+              fontSize: '16px',
+              transition: 'border 0.3s'
+            }}
           />
         </label>
         <label>
-          Password
+          Password :
           <input
             type='password'
             name='password'
             value={password}
             placeholder='password'
             onChange={(e) => setPassword(e.target.value)}
+            style={{
+              width: '80%',
+              padding: '12px 15px',
+              margin: '10px 20px 0',
+              border: '1px solid #ccc',
+              borderRadius: '8px',
+              boxSizing: 'border-box',
+              fontSize: '16px',
+              transition: 'border 0.3s'
+            }}
           />
         </label>
-        <button type='submit'>Login</button>
+        <button
+          type='submit'
+          style={{
+            width: '8%',
+            padding: '12px',
+            backgroundColor: '#9561d9ff',
+            color: 'white',
+            fontSize: '20px',
+            border: 'none',
+            borderRadius: '10px',
+            cursor: 'pointer',
+            transition: 'background-color 0.3s',
+            marginTop: '20px',
+            marginBottom: '20px'
+          }}
+        >
+          Login
+        </button>
+        <Link to='/register'>Don't Have An Account? Register Your Account</Link> 
+        
       </form>
     </>
   );

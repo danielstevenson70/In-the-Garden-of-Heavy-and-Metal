@@ -37,6 +37,15 @@ const RegisterForm = () => {
     <form
       method="POST"
       onSubmit={(e) => handleSubmit(e)}
+        style={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        height: '50vh',
+        fontFamily: 'Arial, sans-serif',
+        marginTop: '20px',
+        marginBottom: '20px'
+        }}
     >
       <label>
         What is Your Name?
@@ -44,8 +53,20 @@ const RegisterForm = () => {
           type="text"
           name="properName"
           value={properName}
-          placeholder="Firstname Lastname"
+          placeholder="First & Last Name"
           onChange={(e) => setProperName(e.target.value)}
+          style={{
+            width: '80%',
+            padding: '12px 15px',
+            margin: '10px 20px 0',
+            border: '1px solid #ccc',
+            borderRadius: '8px',
+            boxSizing: 'border-box',
+            fontSize: '16px',
+            transition: 'border 0.3s',
+            marginTop: '20px',
+            marginBottom: '20px'
+            }}
         />
       </label>
       <label>
@@ -56,19 +77,60 @@ const RegisterForm = () => {
           value={emailAddress}
           placeholder="user@email.com"
           onChange={(e) => setEmailAddress(e.target.value)}
+          style={{
+            width: '80%',
+            padding: '12px 15px',
+            margin: '10px 20px 0',
+            border: '1px solid #ccc',
+            borderRadius: '8px',
+            boxSizing: 'border-box',
+            fontSize: '16px',
+            transition: 'border 0.3s',
+            marginTop: '20px',
+            marginBottom: '20px'
+            }}
         />
       </label>
       <label>
-        Set a Password
+        Set a Password :
         <input
           type="password"
           name="password"
           value={password}
-          placeholder="battery horse correct staple"
+          placeholder="Make it a good password"
           onChange={(e) => setPassword(e.target.value)}
+            style={{
+            width: '80%',
+            padding: '12px 15px',
+            margin: '10px 20px 0',
+            border: '1px solid #ccc',
+            borderRadius: '8px',
+            boxSizing: 'border-box',
+            fontSize: '16px',
+            transition: 'border 0.3s',
+            marginTop: '20px',
+            marginBottom: '20px'
+            }}
         />
       </label>
-      <button type="submit">Register</button>
+       <button
+          type='submit'
+          style={{
+            width: '8%',
+            padding: '12px',
+            backgroundColor: '#9561d9ff',
+            color: 'white',
+            fontSize: '20px',
+            border: 'none',
+            borderRadius: '10px',
+            cursor: 'pointer',
+            transition: 'background-color 0.3s',
+            marginTop: '20px',
+            marginBottom: '20px'
+          }}
+        >
+          Register
+        </button>
     </form>
   );
 };
