@@ -1,15 +1,40 @@
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 const Home = () => {
-    return (
-        <>
-            <p>Find Your Metal Band :</p>
-            <input type="text" className="question" placeholder="ex: doom, grind, heavy" />
-            <button type="button" style={{ display: "flex", margin: "15px auto", padding: "10px 25px", fontSize: "1.2rem", borderRadius: "8px", background: "#444", color: "#fff", border: "none", cursor: "pointer" }}>
-                Search
-            </button>
-            <img src="/ozzman.jpg" alt="Ozzy Fucking Osbourne" className="Ozzy"></img>
-            <h2>R.I.P to the Godfather of all that is Metal</h2>
-        </>
-    );
+  const [linkName, setLinkName] = useState("");
+  const [linkUrl, setLinkUrl] = useState("");
+  const navigate = useNavigate();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("test submit"); // ✅ will show now
+    // You can pass state to the next route
+    navigate("/searchBands", { state: { linkName, linkUrl } });
+  };
+
+  return (
+    <>
+      <p>Find Your Metal Band :</p>
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          name="linkName"
+          value={linkName}
+          onChange={(e) => setLinkName(e.target.value)}
+        />
+        {/* <input
+          type="text"
+          name="linkUrl"
+          value={linkUrl}
+          onChange={(e) => setLinkUrl(e.target.value)}
+        /> */}
+        <button type="submit">Submit</button>
+      </form>
+      <img src="/ozzman.jpg" alt="Ozzy Fucking Osbourne" className="Ozzy"></img>
+      <h2>R.I.P to the Godfather of all that is Metal</h2>
+    </>
+  );
 };
 
 export default Home;

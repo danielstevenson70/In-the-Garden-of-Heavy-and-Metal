@@ -3,6 +3,7 @@ import { generatePath, useNavigate } from "react-router";
 
 
 const SearchBands = () => {
+    console.log("SearchBands mounted");
     const [bandItems, setBandItems] = useState([]);
     const [linkName, setLinkName] = useState("");
     const [linkUrl, setLinkUrl] = useState("");
@@ -13,20 +14,28 @@ const SearchBands = () => {
         navigate(`/band${bandId}`);
     };
 
-    useEffect(() => {
-        const getBands = async () => {
-            const url = `${import.meta.env.VITE_API_URL}/urls`;
-            const data = await fetch(url).then(response => response.json());
+    const getBands = async () => {
+        const url = `${import.meta.env.VITE_API_URL}/genre?searched_genre=deathcore`;
+        console.log('before request ')
+        console.log(linkName)
+        const data = await fetch(url).then(response => response.json());
+        console.log('data: ', data)
 
-            setBandItems(data);
-        };
+        setBandItems(data);
+    };
+
+
+    useEffect(() => {
         getBands();
     }, []);
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        // handle form submission logic here
-    };
+    // const handleSubmit = (e) => {
+    //     alert('test here')
+    //     // e.preventDefault();
+    //     // console.log('test submit');
+    //     // // handle form submission logic here
+    //     // getBands();
+    // };
 
     return (
         <>
@@ -39,28 +48,7 @@ const SearchBands = () => {
             </div>
                 ))}
             </div>
-
-            <form method="POST" onSubmit={handleSubmit}>
-                <label>
-                    <input 
-                        type="text" 
-                        name="linkName" 
-                        value={linkName} 
-                        onChange={(e) => setLinkName(e.target.value)}
-                        style={{ padding: "8px", borderRadius: "4px", border: "1px solid #ccc" }}
-                    />
-                </label>
-                <label>
-                    <input 
-                        type="text" 
-                        name="linkUrl"
-                        value={linkUrl} 
-                        onChange={(e) => setLinkUrl(e.target.value)}
-                    />
-                </label>
-                <button type="submit">Submit</button>
-            </form>
-            <img src="https://lh3.googleusercontent.com/KLV584-o8VQTJBfFs8tOzzL3fK691B7BYaykD8_7poaC_kfvuXQQsGiuey_Iel0T60PEh09axdMPtByr=w120-h120-l90-rj" alt="thousand below" />
+    
             {bandItems && bandItems.length > 0 ? (
                 <ul className={styles?.bandList}>
                     {bandItems.map(band => (
