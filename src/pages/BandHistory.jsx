@@ -1,83 +1,77 @@
-import { useState } from "react";
-import { nanoid } from "nanoid";
-import { useNavigate } from "react-router";
+import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 
-const BandLinkList = () => {
-    const [bandSong, setBandSong] = useState("");
-    const [bandLinks, setBandLinks] = useState("");
-    const [bandInfo, setBandInfo] = useState("");
-    const navigate = useNavigate();
+const BandLinks = () => {
+  const { id } = useParams();
+  const [bandData, setBandData] = useState(null);
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-
-        const shortUrl = nanoid(6);
-        const apiUrl = `${import.meta.env.VITE_API_URL}/urls`;
-        const access_token = localStorage.getItem("access_token");
-
-        const body = {
-            "long_url": bandLinks,
-            "short_url": shortUrl,
-            "title": bandSong,
-            "user_id": 1
-        };
-
-        try {
-            const response = await fetch(apiUrl, {
-                method: 'POST',
-                body: JSON.stringify(body),
-                headers: {
-                    'Content-Type': 'application/json',
-                    Authorization: `Bearer ${access_token}`
-                },
-            });
-            const data = await response.json();
-            console.log("DATA:", data);
-            navigate("/searchband");
-        } catch (error) {
-            console.error(error);
-        }
+  useEffect(() => {
+    const fetchBand = async () => {
+      try {
+        const res = await fetch(`${import.meta.env.VITE_API_URL}/bands/${id}`);
+        const data = await res.json();
+        setBandData(data);
+      } catch (err) {
+        console.error("Failed to fetch band:", err);
+      }
     };
+    fetchBand();
+  }, [id]);
 
-    const searchBandCards = () => (
-        <>
-            <div className="band-section">
-                <div className="band-card">
-                    <h2>Band Links and Merch</h2>
-                    <ul>
-                        <li><a href="https://.com" target="_blank" rel="noopener noreferrer">Official Website</a></li>
-                        <li><a href="https://instagram.com/" target="_blank" rel="noopener noreferrer">Instagram</a></li>
-                        <li><a href="https://facebook.com/" target="_blank" rel="noopener noreferrer">Facebook</a></li>
-                        <li><a href="" target="_blank" rel="noopener noreferrer">Merchlink</a></li>
-                    </ul>
-                </div>
-            </div>
+  if (!bandData) return <p>Loading band info...</p>;
 
-            <div className="band-card">
-                <h2>Song Preview</h2>
-                <iframe width="100%" height="200"
-                    src="https://www.youtube.com/embed/YOUR_VIDEO_ID?start=30&end=60"
-                    title="Band Song Snippet" frameBorder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen>
-                </iframe>
-            </div>
+  return (
+    <div className="band-page">
 
-            <div className="band-card">
-                <h2>About the Band</h2>
-                <p>
-                    
-                </p>
-            </div>
-        </>
-    );
+      {/* 1️⃣ YouTube Snippets */}
+      <div className="band-card band-card-songs">
+        <h2>Song Previews</h2>
+        {bandData.youtubeLinks.slice(0,5).map((link, i) => (
+          <iframe
+            key={i}
+            width="100%"
+            height="200"
+            src={link}
+            title={`Song snippet ${i+1}`}
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+          ></iframe>
+        ))}
+      </div>
 
-    return (
-        <>
-            {/* <SearchBand /> Uncomment if SearchBand is defined/imported */}
-            {searchBandCards()}
-        </>
-    );
+      {/* 2️⃣ Band Info */}
+      <div className="band-card band-card-info">
+        <h2>About the Band</h2>
+        <p>{bandData.info}</p>
+      </div>
+
+      {/* 3️⃣ Merch Links */}
+      <div className="band-card band-card-merch">
+        <h2>Merch & Links</h2>
+        <ul>
+          {bandData.merchLinks.map((link, i) => (
+            <li key={i}>
+              <a href={link.url} target="_blank" rel="noopener noreferrer">
+                {link.title}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      {/* 4️⃣ Tour Dates */}
+      <div className="band-card band-card-tour">
+        <h2>Tour Dates</h2>
+        <ul>
+          {bandData.tourDates.map((date, i) => (
+            <li key={i}>{date}</li>
+          ))}
+        </ul>
+      </div>
+
+    </div>
+  );
 };
 
-export default BandLinkList;
+export default BandLinks;

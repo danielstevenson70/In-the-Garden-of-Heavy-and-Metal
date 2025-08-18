@@ -1,73 +1,61 @@
 import { useState, useEffect } from "react";
-import { generatePath, useNavigate } from "react-router";
-
+import { useNavigate } from "react-router-dom"; // use react-router-dom not react-router
 
 const SearchBands = () => {
-    console.log("SearchBands mounted");
-    const [bandItems, setBandItems] = useState([]);
-    const [linkName, setLinkName] = useState("");
-    const [linkUrl, setLinkUrl] = useState("");
+  const [bandItems, setBandItems] = useState([]);
+  const navigate = useNavigate();
 
-    const navigate = useNavigate();
-    
-    const goToBand = (bandId) => {
-        navigate(`/band${bandId}`);
-    };
+  const goToBand = (bandId) => {
+    navigate(`/band/${bandId}`);
+  };
 
-    const getBands = async () => {
-        const url = `${import.meta.env.VITE_API_URL}/genre?searched_genre=deathcore`;
-        console.log('before request ')
-        console.log(linkName)
-        const data = await fetch(url).then(response => response.json());
-        console.log('data: ', data)
+  const getBands = async () => {
+    try {
+      const url = `${import.meta.env.VITE_API_URL}/bands?search_string=deathcore&limit=5`;
+      console.log("Fetching:", url);
 
-        setBandItems(data);
-    };
+      const response = await fetch(url);
+      if (!response.ok) {
+        console.log("DEBUG: Error response =", errorText);
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
 
+      const data = await response.json();
+      console.log("data:", data);
+      setBandItems(data);
+    } catch (err) {
+      console.error("Failed to fetch bands:", err);
+    }
+  };
 
-    useEffect(() => {
-        getBands();
-    }, []);
+  useEffect(() => {
+    getBands();
+  }, []);
 
-    // const handleSubmit = (e) => {
-    //     alert('test here')
-    //     // e.preventDefault();
-    //     // console.log('test submit');
-    //     // // handle form submission logic here
-    //     // getBands();
-    // };
-
-    return (
-        <>
-            <div>
-                <h1>Search Bands</h1>
-                    {bandItems.map((band) => (
-                <div key={band.id}>
+  return (
+    <>
+      <div>
+        <h1>Search Bands</h1>
+        {bandItems && bandItems.length > 0 ? (
+          <ul>
+            {bandItems.map((band) => ( // Fixed: consistent variable name
+              <li key={band.id}> {/* Fixed: li instead of ul */}
                 <span>{band.name}</span>
-                <button onClick={() => goToBand(band.id)}>View Band</button>
-            </div>
-                ))}
-            </div>
-    
-            {bandItems && bandItems.length > 0 ? (
-                <ul className={styles?.bandList}>
-                    {bandItems.map(band => (
-                        <li key={band.id}>
-                            <a
-                                href={band.short_url}
-                                title={`Short URL for ${band.title}`}
-                                className={styles?.linkLink}
-                            >
-                                {band.title}
-                            </a>
-                        </li>
-                    ))}
-                </ul>
-            ) : (
-                <p>bands did not load</p>
-            )}
-        </>
-    );
+                <button onClick={() => goToBand(band.id)}>View Band</button> {/* Fixed: band.id */}
+                {band.short_url && (
+                  <a href={band.short_url} title={`Short URL for ${band.name}`}> {/* Fixed: band.name */}
+                    Visit Link
+                  </a>
+                )}
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <p>Bands did not load</p>
+        )}
+      </div>
+    </>
+  );
 };
 
 export default SearchBands;
