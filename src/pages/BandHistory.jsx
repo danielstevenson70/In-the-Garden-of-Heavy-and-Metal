@@ -8,7 +8,7 @@ const BandLinks = () => {
   useEffect(() => {
     const fetchBand = async () => {
       try {
-        const res = await fetch(`${import.meta.env.VITE_API_URL}/bands/${id}`);
+        const res = await fetch(`${import.meta.env.VITE_API_URL}/bands_name/${id}`);
         const data = await res.json();
         setBandData(data);
       } catch (err) {

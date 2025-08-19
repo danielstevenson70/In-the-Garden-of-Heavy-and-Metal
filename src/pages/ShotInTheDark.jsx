@@ -6,7 +6,7 @@ const SearchRandomBand = () => {
 
     useEffect (() => {
         const getRandomBands = async () => {
-            const url = `${import.meta.env.VITE_API_URL}/urls`;
+            const url = `${import.meta.env.VITE_API_URL}/randombands`;
             const data = await fetch(url).then(response => response.json());
 
             setRandomBandItems(data);

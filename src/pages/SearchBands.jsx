@@ -11,7 +11,7 @@ const SearchBands = () => {
 
   const getBands = async () => {
     try {
-      const url = `${import.meta.env.VITE_API_URL}/bands?search_string=deathcore&limit=5`;
+      const url = `${import.meta.env.VITE_API_URL}/genre?searched_genre=deathcore`;
       console.log("Fetching:", url);
 
       const response = await fetch(url);
@@ -46,6 +46,7 @@ const SearchBands = () => {
                   <a href={band.short_url} title={`Short URL for ${band.name}`}> {/* Fixed: band.name */}
                     Visit Link
                   </a>
+                  //search form that takes user input and writes into state 
                 )}
               </li>
             ))}
