@@ -1,11 +1,10 @@
-.header {
-    align-items: auto;
-    display: flex;
-    font-size: 20px;
-    flex-wrap: wrap;
-    gap: 10px;
-    justify-content: space-between;
-    margin: 1rem;
-    padding: 20px;
-    width: auto;
+header {
+  position: relative;
+  top: ;
+  width: 100%;
+  background: rgba(42, 42, 42, 0.95);
+  backdrop-filter: blur(15px);
+  z-index: 1000;
+  padding: 0.8rem 0;
+  border-bottom: 3px solid rgba(102, 51, 153, 0.3);
 }
