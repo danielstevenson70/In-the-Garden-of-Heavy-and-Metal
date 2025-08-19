@@ -1,5 +1,5 @@
 :root {
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
@@ -14,53 +14,218 @@
 }
 
 .Ozzy {
-  width: 800%;        
-  max-width: 800px;    
-  height: 600px;        
+  width: 800%;
+  max-width: 800px;
+  height: 600px;
   display: block;
-  margin: 0 auto;      
-  border-radius: 20px; 
+  margin: 0 auto;
+  border-radius: 20px;
   object-fit: cover;
-  opacity: 0.8; 
-  border-radius: 10px; 
+  opacity: 0.8;
+  border-radius: 10px;
   filter: grayscale(70%) brightness(90%);
 }
 
-h1 {
-  font-family: 'Metal Mania', cursive;
-  font-size: 75px;
-  display: center;
-  height: auto;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-p{
-  font-family: 'Metal Mania', cursive;
-  text-align: center;      
-  margin: 20px auto;       
-  font-size: 2rem;          
-  max-width: 800px;
+body {
+  font-family: "Metal Mania", cursive;
+  background: #2a2a2a;
+  color: #e0e6ed;
+  overflow-x: hidden;
+  min-height: 100vh;
 }
 
-button {
-  display: block;
+/* Header */
+header {
+  position: relative;
+  top: 0;
+  width: 100%;
+  background: rgba(42, 42, 42, 0.95);
+  backdrop-filter: blur(15px);
+  z-index: 1000;
+  padding: 0.8rem 0;
+  border-bottom: 1px solid rgba(102, 51, 153, 0.3);
 }
 
-h2 {
-  font-family: 'Fantasty', papyrus, sans-serif;
-  text-align: center;      
-  margin: 20px auto;       
-  font-size: 2rem;          
-  max-width: 800px;
-}
-
-.question {
-  font-family: 'Fantasty', papyrus, sans-serif;
-  font-size: 20px;
-  width: 25%; 
-  height: 30px;
+nav {
   display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1800px;
   margin: 0 auto;
-  object-fit: cover;
+  padding: 0 2rem;
+  /* ... existing styles ... */
+  border-radius: 5px; /* Slightly rounded for a subtle effect, or 0px for sharp corners */
+  border: 1px solid #4a2d71; /* Darker, metallic border */
+  background: linear-gradient(to bottom, #7a42b1, #512b7a); /* Darker purple metallic gradient */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); /* Subtle shadow for depth */
+  background: linear-gradient(to bottom, #8c4cc8, #603494); /* Brighter gradient on hover */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Stronger shadow on hover */
+  transform: translateY(-2px); /* Slight lift on hover */
+}
+
+.logo {
+  font-family: "Creepster", cursive;
+  font-size: 1.8 rem;
+  color: #663399;
+  text-shadow: 0 0 15px rgba(102, 51, 153, 0.5);
+}
+
+
+/* Main Content Container */
+.page {
+  min-height: 100vh;
+  padding-top: 80px;
+}
+
+/* Homepage Styles */
+.homepage {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 2rem;
+  min-height: calc(100vh - 80px);
+}
+
+.main-title {
+  font-family: "Metal Mania", cursive;
+  font-size: 8rem;
+  margin-bottom: 8rem;
+  background: linear-gradient(45deg, #663399, #4d2d66, #331a4d);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 30px rgba(102, 51, 153, 0.4);
+  animation: glow 4s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+  from {
+    filter: drop-shadow(0 0 20px rgba(102, 51, 153, 0.3));
+  }
+  to {
+    filter: drop-shadow(0 0 35px rgba(102, 51, 153, 0.6));
+  }
+}
+
+.subtitle {
+  font-size: 1.4rem;
+  color: #b8b8d1;
+  margin-bottom: 3rem;
+  max-width: 600px;
+  line-height: 1.5;
+}
+
+/* Search Section */
+.search-container {
+  background: rgba(30, 30, 30, 0.8); /* Keep the dark, semi-transparent background */
+  backdrop-filter: blur(20px);
+  border-radius: 10px; /* Reduce border-radius for sharper corners, but still slightly rounded */
+  padding: 3rem;
+  border: 1px solid #4a2d71; /* Darker, metallic border */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6); /* Stronger, darker shadow */
+  max-width: 700px;
+  width: 100%;
+  font-size: 1.8rem;
+  color: #663399;
+  margin-bottom: 2rem;
+  font-weight: 500;
+  font-family: "Metal Mania", cursive;
+}
+
+
+.search-input {
+  background: rgba(20, 20, 20, 0.9);
+  border: 2px solid #4a2d71; /* Metallic border color */
+  border-radius: 8px; /* Slightly rounded, but less than the original */
+  padding: 1rem 1.5rem;
+  font-size: 1.1rem;
+  color: #e0e6ed;
+  transition: all 0.3s ease;
+  font-family: "Metal Mania", cursive;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.5); /* Inner shadow for a depressed look */
+  outline: none;
+  border-color: #663399; /* Maintain focus color */
+  box-shadow: 0 0 15px rgba(102, 51, 153, 0.5), inset 0 1px 3px rgba(0, 0, 0, 0.8); /* Add a stronger inner shadow on focus */
+  background: rgba(20, 20, 20, 1);
+}
+
+
+.search-input::placeholder {
+  color: #7a7a9a;
+}
+
+.search-button {
+  background: linear-gradient(
+    45deg,
+    #7a42b1,
+    #512b7a
+  ); /* Metallic gradient from nav link example */
+  color: white;
+  border: 1px solid #4a2d71; /* Metallic border */
+  padding: 1rem 2rem;
+  border-radius: 8px; /* Reduced border-radius */
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4); /* Darker, more pronounced shadow */
+  font-family: "Metal Mania", cursive;
+  transform: translateY(-2px); /* Slightly less aggressive lift */
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6); /* Stronger shadow on hover */
+  background: linear-gradient(45deg, #8c4cc8, #603494);
+}
+
+
+
+
+/* Quick suggestions */
+.suggestions {
+  margin-top: 2rem;
+}
+
+.suggestions p {
+  color: #9a9ab8;
+  margin-bottom: 1rem;
+  font-size: 0.95rem;
+}
+
+.suggestion-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  justify-content: center;
+}
+
+.tag {
+  background: linear-gradient(
+    45deg,
+    #7a42b1,
+    #512b7a
+  ); /* Metallic gradient */
+  color: #e0e6ed; /* Lighter text color for better contrast on dark background */
+  padding: 0.5rem 1rem;
+  border-radius: 5px; /* Sharper corners */
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 1px solid #4a2d71; /* Metallic border */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); /* Subtle shadow for depth */
+   background: linear-gradient(
+    45deg,
+    #8c4cc8,
+    #603494
+  ); /* Brighter metallic gradient on hover */
+  transform: translateY(-1px); /* Slight lift on hover */
+  border-color: #663399; /* Darker border on hover */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); 
 }
 
 @media (prefers-color-scheme: light) {
