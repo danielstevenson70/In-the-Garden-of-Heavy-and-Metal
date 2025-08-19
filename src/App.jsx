@@ -37,7 +37,7 @@ export default function App() {
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
-            <Route path="/searchBands" element={<SearchBands />} />
+            <Route path="/searchBands/:genreId" element={<SearchBands />} />
           </Route>
           <Route element={<ProtectedLayout />}>
             <Route path="/logout" element={<Logout />} />
