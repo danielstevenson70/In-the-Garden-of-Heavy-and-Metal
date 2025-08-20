@@ -8,14 +8,13 @@ const Home = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("test submit"); // ✅ will show now
-    // You can pass state to the next route
+    console.log("test submit"); 
     navigate("/searchBands", { state: { linkName, linkUrl } });
   };
 
 return (
   <>
-    <p>Find Your Metal Band :</p>
+    <center><p>Find Your Metal Band :</p></center>
     <form onSubmit={handleSubmit}>
       <input
         type="text"
@@ -33,7 +32,7 @@ return (
           boxSizing: 'border-box',
           fontSize: '16px',
           transition: 'border 0.3s',
-          marginTop: '20px',
+          marginTop: '30px',
           marginBottom: '20px',
           marginLeft: '450px'
         }}

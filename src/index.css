@@ -35,41 +35,46 @@
 body {
   font-family: "Metal Mania", cursive;
   background: #2a2a2a;
-  color: #e0e6ed;
-  overflow-x: hidden;
-  min-height: 100vh;
+  color: #e0e6edec;
+  min-height: 150vh;
 }
-
-/* Header */
-
-
 
 .logo {
   font-family: "Creepster", cursive;
-  font-size: 1.8 rem;
+  font-size: 2 rem;
   color: #663399;
   text-shadow: 0 0 15px rgba(102, 51, 153, 0.5);
 }
 
+nav {
+  float: right;
+  justify-content: space-between;
+  align-items: auto;
+  margin-right: 5rem;
+  font-size: 20px;
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 1.5rem;
+}
+
 .nav-links a {
-  /* ... existing styles ... */
-  border-radius: 5px; /* Slightly rounded for a subtle effect, or 0px for sharp corners */
-  border: 1px solid #4a2d71; /* Darker, metallic border */
-  background: linear-gradient(to bottom, #7a42b1, #512b7a); /* Darker purple metallic gradient */
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); /* Subtle shadow for depth */
+  border-radius: 5px;
+  border: 1px solid #4a2d71;
+  background: linear-gradient(to bottom, #7a42b1, #512b7a);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  margin-left: 15px; /* Add some space between individual links */
+  text-decoration: none; /* Remove underline */
+  color: #fff; /* Ensure text is visible */
+  padding: 8px 15px; /* Adjust padding as needed */
 }
 
 .nav-links a:hover,
 .nav-links a.active {
-  background: linear-gradient(to bottom, #8c4cc8, #603494); /* Brighter gradient on hover */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Stronger shadow on hover */
-  transform: translateY(-2px); /* Slight lift on hover */
-}
-
-/* Main Content Container */
-.page {
-  min-height: 100vh;
-  padding-top: 80px;
+  color: #663399;
+  background: rgba(102, 51, 153, 0.1);
 }
 
 /* Homepage Styles */
@@ -80,7 +85,6 @@ body {
   align-items: center;
   text-align: center;
   padding: 2rem;
-  min-height: calc(100vh - 80px);
 }
 
 .main-title {
@@ -114,108 +118,70 @@ body {
 
 /* Search Section */
 .search-container {
-  background: rgba(30, 30, 30, 0.8); /* Keep the dark, semi-transparent background */
+  background: rgba(30, 30, 30, 0.8);
   backdrop-filter: blur(20px);
-  border-radius: 10px; /* Reduce border-radius for sharper corners, but still slightly rounded */
+  border-radius: 25px;
   padding: 3rem;
-  border: 1px solid #4a2d71; /* Darker, metallic border */
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6); /* Stronger, darker shadow */
+  border: 1px solid rgba(102, 51, 153, 0.3);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
   max-width: 700px;
   width: 100%;
 }
 
+.search-title {
+  font-size: 1.8rem;
+  color: #663399;
+  margin-bottom: 2rem;
+  font-weight: 500;
+  font-family: "Metal Mania", cursive;
+}
+
+.search-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
 .search-input {
   background: rgba(20, 20, 20, 0.9);
-  border: 2px solid #4a2d71; /* Metallic border color */
-  border-radius: 8px; /* Slightly rounded, but less than the original */
+  border: 2px solid rgba(102, 51, 153, 0.4);
+  border-radius: 15px;
   padding: 1rem 1.5rem;
   font-size: 1.1rem;
   color: #e0e6ed;
   transition: all 0.3s ease;
   font-family: "Metal Mania", cursive;
-  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.5); /* Inner shadow for a depressed look */
 }
 
 .search-input:focus {
   outline: none;
-  border-color: #663399; /* Maintain focus color */
-  box-shadow: 0 0 15px rgba(102, 51, 153, 0.5), inset 0 1px 3px rgba(0, 0, 0, 0.8); /* Add a stronger inner shadow on focus */
+  border-color: rgba(102, 51, 153, 0.8);
+  box-shadow: 0 0 20px rgba(102, 51, 153, 0.3);
   background: rgba(20, 20, 20, 1);
 }
-
 
 .search-input::placeholder {
   color: #7a7a9a;
 }
 
 .search-button {
-  background: linear-gradient(
-    45deg,
-    #7a42b1,
-    #512b7a
-  ); /* Metallic gradient from nav link example */
+  background: linear-gradient(45deg, #663399, #4d2d66);
   color: white;
-  border: 1px solid #4a2d71; /* Metallic border */
+  border: none;
   padding: 1rem 2rem;
-  border-radius: 8px; /* Reduced border-radius */
+  border-radius: 15px;
   font-size: 1.1rem;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4); /* Darker, more pronounced shadow */
+  box-shadow: 0 10px 30px rgba(102, 51, 153, 0.4);
   font-family: "Metal Mania", cursive;
 }
 
 .search-button:hover {
-  transform: translateY(-2px); /* Slightly less aggressive lift */
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6); /* Stronger shadow on hover */
-  background: linear-gradient(45deg, #8c4cc8, #603494); /* Brighter metallic gradient on hover */
-}
-
-
-/* Quick suggestions */
-.suggestions {
-  margin-top: 2rem;
-}
-
-.suggestions p {
-  color: #9a9ab8;
-  margin-bottom: 1rem;
-  font-size: 0.95rem;
-}
-
-.suggestion-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.8rem;
-  justify-content: center;
-}
-
-.tag {
-  background: linear-gradient(
-    45deg,
-    #7a42b1,
-    #512b7a
-  ); /* Metallic gradient */
-  color: #e0e6ed; /* Lighter text color for better contrast on dark background */
-  padding: 0.5rem 1rem;
-  border-radius: 5px; /* Sharper corners */
-  font-size: 0.9rem;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  border: 1px solid #4a2d71; /* Metallic border */
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); /* Subtle shadow for depth */
-}
-
-.tag:hover {
-  background: linear-gradient(
-    45deg,
-    #8c4cc8,
-    #603494
-  ); /* Brighter metallic gradient on hover */
-  transform: translateY(-1px); /* Slight lift on hover */
-  border-color: #663399; /* Darker border on hover */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Stronger shadow on hover */
+  transform: translateY(-3px);
+  box-shadow: 0 15px 40px rgba(102, 51, 153, 0.5);
+  background: linear-gradient(45deg, #4d2d66, #663399);
 }
 
 @media (prefers-color-scheme: light) {
