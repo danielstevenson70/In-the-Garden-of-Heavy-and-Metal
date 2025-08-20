@@ -8,7 +8,9 @@ const BandLinks = () => {
   useEffect(() => {
     const fetchBand = async () => {
       try {
-        const res = await fetch(`${import.meta.env.VITE_API_URL}/bands_name/${id}`);
+        const res = await fetch(
+          `${import.meta.env.VITE_API_URL}/bands_name/${id}`
+        );
         const data = await res.json();
         setBandData(data);
       } catch (err) {
@@ -22,17 +24,16 @@ const BandLinks = () => {
 
   return (
     <div className="band-page">
-
       {/* 1️⃣ YouTube Snippets */}
       <div className="band-card band-card-songs">
         <h2>Song Previews</h2>
-        {bandData.youtubeLinks.slice(0,5).map((link, i) => (
+        {bandData.youtubeLinks.slice(0, 5).map((link, i) => (
           <iframe
             key={i}
             width="100%"
             height="200"
             src={link}
-            title={`Song snippet ${i+1}`}
+            title={`Song snippet ${i + 1}`}
             frameBorder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowFullScreen
@@ -69,7 +70,29 @@ const BandLinks = () => {
           ))}
         </ul>
       </div>
-
+      <div>
+        {bandItems && bandItems.length > 0 ? (
+          <ul>
+            {bandItems.map((link) => (
+              <li key={link.id}>
+                <a
+                  href={link.short_url}
+                  title={`Short Url for ${link.title}`}
+                  className={styles.BandLink}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    goToBand(link.id);
+                  }}
+                >
+                  {link.title}
+                </a>
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <p>Bands did not load</p>
+        )}
+      </div>
     </div>
   );
 };

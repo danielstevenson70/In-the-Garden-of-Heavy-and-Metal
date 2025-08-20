@@ -16,21 +16,19 @@ const bandLinkList = () => {
 
     return (
         <>
-        {linkItems && linkItems.length > 0 ? (
-            <ul className={styles.linkList}>
-                {linkItems.map(link => (
-                    <li key={link.id}>
-                        <a
-                            title={`Short URL for ${link.title}`}
-                            className={styles.linkLink}
-                        >
-                            {link.title}
-                        </a>
-                    </li>
-                ))}
+        {bandLinkItems && bandLinkItems.length > 0 ? (
+            <ul className={styles.BandLink.module}>
+                {linkItems.map(link => {
+                    return (<li key={link.id}>
+                        <a href={`/band/1${link.short_url}`} 
+                        title={`Short URL for ${link.title}`}
+                        className={styles.linkLink}
+                        >{link.title}</a>
+                    </li>)
+                })}
             </ul>
         ) : (
-            <p>links did not load</p>
+            <p>Bands did not load</p>
             )}
         </>
     );
