@@ -1,12 +1,32 @@
-# React + Vite
+# In the Garden of Heavy and Metal
+This app was created to help find the type of bands that may fit your metal side. If you decide to look for a "Doom" metal or "Heavy" metal band
+this app grants you that search by typing in your sound and bands appear that will fit exactly what you're searching for 
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Features
+- Search for specific genres
+- Find your band
+- Search through their youtube snippets
+- Find their information and history of the band
+- Find their merch links, social media links and tour dates
 
-Currently, two official plugins are available:
+## Tech Used
+FRONT-END
+- React
+- React Router DOM
+- Javascript
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+BACK-END
+- FastAPI
+- SQLAlchemy
+- PostgresSQL
+- Python
+  
+AUTHENTICATION
+- JWT
+- Bcrypt
+- OAuth
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+DEVELOPMENT TOOLS
+-Vite
+-GitHub
+-npm
