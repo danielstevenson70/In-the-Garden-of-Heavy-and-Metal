@@ -1,47 +1,22 @@
 import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom"; // use react-router-dom not react-router
+import { useParams } from "react-router-dom"; 
+// import styles from "../styles/BandLink.module.css"; // Update with your actual styles file
 
-const SearchBands = () => {
-  const [bandsItems, setBandsItems] = useState([]);
-  const [linkUrl, setLinkUrl] = useState("");
-  const [linkName, setLinkName] = useState("");
-  const navigate = useNavigate();
-  const { genreId } = useParams();
-  
-useEffect(() => {
+  const SearchBands = () => {
+    const [bandsItems, setBandsItems] = useState([]);
+    const { genreId } = useParams();
+
+  useEffect(() => {
     const fetchBands = async () => {
-      try {
         const url = `${import.meta.env.VITE_API_URL}/genre/${genreId}`;
         const data = await fetch(url).then((response) => response.json());
         setBandsItems(data.bands || []);   
-      } catch (error) {
-        console.error("Error fetching bands:", error);
-      }
     };
 
     fetchBands();
-  }, []);
+}, []);
 
-    try {
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/bands`, {
-        method: "POST",
-        body: JSON.stringify(body),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-      const data = await response.json();
-      console.log("DATA: ", data);
-      
-
-      navigate("/bands");
-    } catch (error) {
-      console.error(error);
-      navigate("/404");
-    }
-  };
-
-  return (
+return (
     <>
       <h2>Search Results</h2>
       {bandsItems.length > 0 ? (
@@ -56,6 +31,28 @@ useEffect(() => {
     </>
   );
 };
+
+//   return (
+//         <>
+//         {SearchBands && SearchBands.length > 0 ? (
+//             <ul className={styles.bandLink}>
+//                 {bandLinkItems.map(link => {
+//                     return (<li key={link.id}>
+//                         <a href={`/searchBands/${link.short_url}`} 
+//                         title={`Short URL for ${link.title}`}
+//                         className={styles.linkLink}
+//                         >
+//                         {link.title}
+//                         </a>
+//                     </li>)
+//                 })}
+//             </ul>
+//         ) : (
+//             <p>Bands did not load</p>
+//             )}
+//         </>
+//     );
+// };
 
 
 export default SearchBands;
