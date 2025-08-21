@@ -11,6 +11,9 @@ const BandLinks = () => {
         const res = await fetch(
           `${import.meta.env.VITE_API_URL}/bands/${id}`
         );
+        if (!res.ok) {
+          throw new Error(`Failed to fetch band, status: ${res.status}`);
+        }
         const data = await res.json();
         setBandData(data);
       } catch (err) {
@@ -18,7 +21,7 @@ const BandLinks = () => {
       }
     };
     fetchBandItems();
-  }, [id]);
+  }, [bandData]);
 
   if (!bandData) return <p>Loading band info...</p>;
 

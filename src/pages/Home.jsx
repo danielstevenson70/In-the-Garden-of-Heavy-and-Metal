@@ -7,8 +7,7 @@ const Home = () => {
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("test submit"); 
+    e.preventDefault(); 
     navigate("/searchBands", { state: { linkName, linkUrl } });
   };
 
@@ -54,7 +53,7 @@ return (
         Search
       </button>
     </form>
-    <img src="/ozzman.jpg" alt="Ozzy Fucking Osbourne" className="Ozzy"></img>
+    <img src="/ozzman.jpg" alt="Ozzy Osbourne" className="Ozzy"></img>
     <h2>R.I.P to the Godfather of all that is Metal</h2>
   </>
 );
