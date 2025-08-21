@@ -56,7 +56,7 @@ return (
         <input
           type="text"
           name="linkName"
-          value={linkName}
+          value={bandName}
           onChange={(e) => setLinkName(e.target.value)}
         />
       </label>

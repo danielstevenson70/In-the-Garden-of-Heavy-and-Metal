@@ -6,10 +6,10 @@ const BandLinks = () => {
   const [bandData, setBandData] = useState(null);
 
   useEffect(() => {
-    const fetchBand = async () => {
+    const fetchBandItems = async () => {
       try {
         const res = await fetch(
-          `${import.meta.env.VITE_API_URL}/bands_name/${id}`
+          `${import.meta.env.VITE_API_URL}/bands/${id}`
         );
         const data = await res.json();
         setBandData(data);
@@ -17,7 +17,7 @@ const BandLinks = () => {
         console.error("Failed to fetch band:", err);
       }
     };
-    fetchBand();
+    fetchBandItems();
   }, [id]);
 
   if (!bandData) return <p>Loading band info...</p>;
