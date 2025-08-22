@@ -1,36 +1,28 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
+//import styles from "./pages/BandLink.module.css";
+
 const BandLinks = () => {
   const { id } = useParams();
   const [bandData, setBandData] = useState(null);
 
   useEffect(() => {
     const fetchBandItems = async () => {
-      try {
-        const res = await fetch(
-          `${import.meta.env.VITE_API_URL}/bands/${id}`
-        );
-        if (!res.ok) {
-          throw new Error(`Failed to fetch band, status: ${res.status}`);
-        }
+        const res = await fetch(`${import.meta.env.VITE_API_URL}/bands/`);
         const data = await res.json();
+        console.log('API returned', data);
         setBandData(data);
-      } catch (err) {
-        console.error("Failed to fetch band:", err);
-      }
     };
     fetchBandItems();
-  }, [bandData]);
-
-  if (!bandData) return <p>Loading band info...</p>;
+  }, [id]);
 
   return (
     <div className="band-page">
       {/* 1️⃣ YouTube Snippets */}
       <div className="band-card band-card-songs">
         <h2>Song Previews</h2>
-        {bandData.youtubeLinks.slice(0, 5).map((link, i) => (
+        {bandData && bandData.youtubeLinks && bandData.youtubeLinks.slice(0, 5).map((link, i) => (
           <iframe
             key={i}
             width="100%"
@@ -47,53 +39,34 @@ const BandLinks = () => {
       {/* 2️⃣ Band Info */}
       <div className="band-card band-card-info">
         <h2>About the Band</h2>
-        <p>{bandData.info}</p>
+        {bandData && <p>{bandData.info}</p>}
       </div>
 
       {/* 3️⃣ Merch Links */}
       <div className="band-card band-card-merch">
         <h2>Merch & Links</h2>
-        <ul>
-          {bandData.merchLinks.map((link, i) => (
-            <li key={i}>
-              <a href={link.url} target="_blank" rel="noopener noreferrer">
-                {link.title}
-              </a>
-            </li>
-          ))}
-        </ul>
-      </div>
-
-      {/* 4️⃣ Tour Dates */}
-      <div className="band-card band-card-tour">
-        <h2>Tour Dates</h2>
-        <ul>
-          {bandData.tourDates.map((date, i) => (
-            <li key={i}>{date}</li>
-          ))}
-        </ul>
-      </div>
-      <div>
-        {bandItems && bandItems.length > 0 ? (
+        {bandData && bandData.merchLinks && (
           <ul>
-            {bandItems.map((link) => (
-              <li key={link.id}>
-                <a
-                  href={link.short_url}
-                  title={`Short Url for ${link.title}`}
-                  className={styles.BandLink}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    goToBand(link.id);
-                  }}
-                >
+            {bandData.merchLinks.map((link, i) => (
+              <li key={i}>
+                <a href={link.url} target="_blank" rel="noopener noreferrer">
                   {link.title}
                 </a>
               </li>
             ))}
           </ul>
-        ) : (
-          <p>Bands did not load</p>
+        )}
+      </div>
+
+      {/* 4️⃣ Tour Dates */}
+      <div className="band-card band-card-tour">
+        <h2>Tour Dates</h2>
+        {bandData && bandData.tourDates && (
+          <ul>
+            {bandData.tourDates.map((date, i) => (
+              <li key={i}>{date}</li>
+            ))}
+          </ul>
         )}
       </div>
     </div>

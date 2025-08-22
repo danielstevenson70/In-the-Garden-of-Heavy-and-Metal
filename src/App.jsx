@@ -6,26 +6,12 @@ import ProtectedLayout from "./layouts/ProtectedLayout";
 
 import Home from "./pages/Home";
 import SearchBands from "./pages/SearchBands";
+import BandHistory from "./pages/BandHistory";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Logout from "./pages/Logout";
 
 
-// export default function App() {
-//     const [prompt, setPrompt] = useState("");
-//     const [response, setResponse] = useState("");
-
-//     const handleSubmit = async (e) => {
-//         e.preventDefault();
-//         const res = await fetch(`${import.meta.env.VITE_API_URL}/generate`, {
-//            //the import meta needs to be generated and not have it just /generate 
-//             method: "POST",
-//             headers: { "Content-Type": "application/json" },
-//             body: JSON.stringify({ prompt })
-//         });
-//         const data = await res.json();
-//         setResponse(data.output);
-//     };
 
 function App() {
   return (
@@ -38,6 +24,7 @@ function App() {
             <Route path="/register" element={<Register />} />
             <Route path="/searchBands" element={<SearchBands />} />
             <Route path="/searchBands/:genreId" element={<SearchBands />} />
+            <Route path="/bands/:id" element={<BandHistory />} />
           </Route>
           <Route element={<ProtectedLayout />}>
             <Route path="/logout" element={<Logout />} />
@@ -48,5 +35,5 @@ function App() {
   );
 }
 
-//make a drop box for which path to take 
+
 export default App;
