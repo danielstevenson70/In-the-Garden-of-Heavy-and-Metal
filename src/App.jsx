@@ -6,7 +6,7 @@ import ProtectedLayout from "./layouts/ProtectedLayout";
 
 import Home from "./pages/Home";
 import SearchBands from "./pages/SearchBands";
-import BandHistory from "./pages/BandHistory";
+import BandHistory from "./pages/BandLink";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Logout from "./pages/Logout";
@@ -24,7 +24,7 @@ function App() {
             <Route path="/register" element={<Register />} />
             <Route path="/searchBands" element={<SearchBands />} />
             <Route path="/searchBands/:genreId" element={<SearchBands />} />
-            <Route path="/bands/:id" element={<BandHistory />} />
+            <Route path="/bands/:bandId" element={<BandHistory />} />
           </Route>
           <Route element={<ProtectedLayout />}>
             <Route path="/logout" element={<Logout />} />

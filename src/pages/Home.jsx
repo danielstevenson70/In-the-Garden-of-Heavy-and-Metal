@@ -1,20 +1,26 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 
 const Home = () => {
+  const [genresItems, setGenresItems] = useState([]);
   const [linkName, setLinkName] = useState("");
-  const [linkUrl, setLinkUrl] = useState("");
-  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
-    e.preventDefault(); 
-    navigate("/searchBands", { state: { linkName, linkUrl } });
+    e.preventDefault();
+    const fetchGenres = async () => {
+      const url = `${import.meta.env.VITE_API_URL}/genres`;
+      const data = await fetch(url).then((response) => response.json());
+      console.log(data);
+      setGenresItems(data);
+    };
+
+    fetchGenres();
   };
 
 return (
   <>
-    <center><p>Find Your Metal Band :</p></center>
-    <form onSubmit={handleSubmit}>
+  <form onSubmit={handleSubmit}>
+  <h2>Find Your Metal Band:</h2>
       <input
         type="text"
         name="linkName"
@@ -29,7 +35,7 @@ return (
           border: '1px solid #ccc',
           borderRadius: '8px',
           boxSizing: 'border-box',
-          fontSize: '16px',
+          fontSize: '20px',
           transition: 'border 0.3s',
           marginTop: '30px',
           marginBottom: '20px',
@@ -46,16 +52,28 @@ return (
           color: 'white',
           border: 'none',
           borderRadius: '8px',
-          fontSize: '16px',
+          fontSize: '20px',
           cursor: 'pointer'
         }}
       >
         Search
       </button>
     </form>
+    {genresItems.length > 0 ? (
+    <ul>
+      {genresItems.map((genre) => (
+        <li key={genre.id}>
+          <Link to={`/searchBands/${genre.id}`}>{genre.name}</Link>
+        </li>
+      ))}
+    </ul>
+  ) : (
+  <p>No genres found.</p>
+)}
     <img src="/ozzman.jpg" alt="Ozzy Osbourne" className="Ozzy"></img>
     <h2>R.I.P to the Godfather of all that is Metal</h2>
   </>
+
 );
 };
 

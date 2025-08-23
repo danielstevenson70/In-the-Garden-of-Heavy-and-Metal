@@ -4,25 +4,36 @@ import { useParams } from "react-router-dom";
 //import styles from "./pages/BandLink.module.css";
 
 const BandLinks = () => {
-  const { id } = useParams();
-  const [bandData, setBandData] = useState(null);
+  const { bandId } = useParams();
+  const [bandData, setBandData] = useState([]);
 
   useEffect(() => {
     const fetchBandItems = async () => {
-        const res = await fetch(`${import.meta.env.VITE_API_URL}/bands/`);
+        const res = await fetch(`${import.meta.env.VITE_API_URL}/bands/${bandId}`);
         const data = await res.json();
         console.log('API returned', data);
         setBandData(data);
     };
     fetchBandItems();
-  }, [id]);
+  }, [bandId]);
 
   return (
     <div className="band-page">
       {/* 1️⃣ YouTube Snippets */}
       <div className="band-card band-card-songs">
         <h2>Song Previews</h2>
-        {bandData && bandData.youtubeLinks && bandData.youtubeLinks.slice(0, 5).map((link, i) => (
+         {bandData.songs?.length > 0 ? (
+    <ul>
+      {bandData.songs?.map((song) => (
+        <li key={song.id}>
+          {song.name}
+        </li>
+      ))}
+    </ul>
+  ) : (
+  <p>No genres found.</p>
+)}
+        {bandData.youtube?.map((link, i) => (
           <iframe
             key={i}
             width="100%"
