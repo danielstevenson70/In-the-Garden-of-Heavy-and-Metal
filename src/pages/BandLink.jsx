@@ -36,7 +36,7 @@ const BandLinks = () => {
         {bandData.youtube?.map((link, i) => (
           <iframe
             key={i}
-            width="100%"
+            width="25%"
             height="200"
             src={link}
             title={`Song snippet ${i + 1}`}
@@ -51,34 +51,27 @@ const BandLinks = () => {
       <div className="band-card band-card-info">
         <h2>About the Band</h2>
         {bandData && <p>{bandData.info}</p>}
+        <li>The Acacia Strain is an American deathcore band that was founded in 2001 and originally based in Chicopee, Massachusetts, but now based in Albany, New York. The group is currently signed to Rise Records[1] and initially consisted of high school friends Vincent Bennett, Christopher Daniele, and Ben Abert, Karrie Whitfield, Daniel "DL" Laskiewicz, and Daniel Daponde joining shortly after. They recorded and released their debut album ...And Life Is Very Long in 2002 via Devil's Head records. Since then, the band has released twelve full-length albums.</li>
       </div>
 
       {/* 3️⃣ Merch Links */}
       <div className="band-card band-card-merch">
         <h2>Merch & Links</h2>
-        {bandData && bandData.merchLinks && (
-          <ul>
-            {bandData.merchLinks.map((link, i) => (
-              <li key={i}>
-                <a href={link.url} target="_blank" rel="noopener noreferrer">
-                  {link.title}
-                </a>
+          <ul> 
+              <li>
+                <p>https://youaresafefromgodhere.com/</p>
+                <p>https://riserecords.com/collections/artist-the-acacia-strain</p>
+                <p>https://www.coldcutsmerch.com/collections/the-acacia-strain?srsltid=AfmBOorg-97tt5obQA4xDb9oRGThfwdXpUtOANg4bBVXC-QXKNMc1vry</p>
               </li>
-            ))}
           </ul>
-        )}
       </div>
 
       {/* 4️⃣ Tour Dates */}
       <div className="band-card band-card-tour">
         <h2>Tour Dates</h2>
-        {bandData && bandData.tourDates && (
           <ul>
-            {bandData.tourDates.map((date, i) => (
-              <li key={i}>{date}</li>
-            ))}
+          CHECK BACK SOON!
           </ul>
-        )}
       </div>
     </div>
   );

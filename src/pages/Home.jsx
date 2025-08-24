@@ -20,7 +20,7 @@ const Home = () => {
 return (
   <>
   <form onSubmit={handleSubmit}>
-  <h2>Find Your Metal Band:</h2>
+  <h1><center>Find Your Metal Band:</center></h1>
       <input
         type="text"
         name="linkName"
@@ -28,6 +28,7 @@ return (
         onChange={(e) => setLinkName(e.target.value)}
         placeholder="doom, death, heavy"
         style={{
+          fontSize: '20px',
           alignItems: 'center',
           width: '35%',
           padding: '12px 15px',
@@ -68,10 +69,10 @@ return (
       ))}
     </ul>
   ) : (
-  <p>No genres found.</p>
+  <p></p>
 )}
     <img src="/ozzman.jpg" alt="Ozzy Osbourne" className="Ozzy"></img>
-    <h2>R.I.P to the Godfather of all that is Metal</h2>
+    <h2><center>R.I.P to the Godfather of all that is Metal</center></h2>
   </>
 
 );
