@@ -28,7 +28,6 @@ return (
         onChange={(e) => setLinkName(e.target.value)}
         placeholder="doom, death, heavy"
         style={{
-          fontSize: '20px',
           alignItems: 'center',
           width: '35%',
           padding: '12px 15px',

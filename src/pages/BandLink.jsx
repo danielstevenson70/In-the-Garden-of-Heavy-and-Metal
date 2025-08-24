@@ -1,8 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
-//import styles from "./pages/BandLink.module.css";
-
 const BandLinks = () => {
   const { bandId } = useParams();
   const [bandData, setBandData] = useState([]);
